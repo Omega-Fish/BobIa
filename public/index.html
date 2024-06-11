@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BobIA</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="conteudo">
+
+    
+    <button onclick="abrirModal()" class="botão">Clique aqui para Consultar o BobIa </button>
+    <dialog id="modal" class="modal">
+    <div class="container">
+        <h1>BobIA</h1>
+        <textarea class="input" id="pergunta" type="text" placeholder="Digite a pergunta..."></textarea>
+        <br><br>
+        <button onclick="gerarResposta()" class="botão">Gerar Resposta</button>
+        <div class="resposta" id="resposta" style="display: none;"></div>
+    </div>
+</dialog>
+</div>
+    <script>
+        
+        async function gerarResposta() {
+            const pergunta = document.getElementById('pergunta').value;
+            if(pergunta == '') {
+                alert('Digite sua pergunta!')
+                return
+                }
+            
+            const response = await fetch('/perguntar', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ pergunta })
+            });
+
+            const data = await response.json();
+
+            resposta.style.display = 'block';
+            document.getElementById('resposta').innerText = data.resultado;
+        }
+
+        function abrirModal() {
+            modal.showModal()
+        }
+        
+    </script>
+    
+</body>
+</html>

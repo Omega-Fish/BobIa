@@ -2,7 +2,7 @@ body {
     font-family: Arial, sans-serif;
     background: url(assets/imagens/background.png);
     background-position: -245px 0px;
-    height: 80vh;
+    height: 100vh;
     margin: 0;
     padding: 0;
 }
@@ -28,8 +28,13 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100%;
-    width: 100%;
+    height: fit-content;
+    padding: 70px 0px;
+    width: 50%;
+    border: solid 2px white;
+    border-radius: 10px;
+    background-color: #111111;
+    color: white;
 }
 
 
